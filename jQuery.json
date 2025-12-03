@@ -1,0 +1,12 @@
+<script>
+  // jQuery equivalent of a
+  $("#myElement").text("Modified Text");
+
+  // jQuery equivalent of b
+  $("#myDIV").addClass("myStyle");
+
+  // jQuery equivalent of c
+  $("#myButton").on("click", function() {
+    alert("Button clicked!");
+  });
+</script>

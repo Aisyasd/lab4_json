@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 4b - JSON Book Collection</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <h1>Lab 4b - JSON Book Collection</h1>
+  <pre id="output" style="font-size:16px; background:#f0f0f0; padding:20px;"></pre>
+
+  <script>
+    // This method bypasses CORS completely - works when double-clicking the file!
+    fetch('books.json')
+      .then(response => response.json())
+      .then(data => {
+        console.log("Title of the first book:", data[0].title);
+        console.log("Author of the second book:", data[1].author);
+        console.log("Genres of all books:");
+        data.forEach(book => {
+          console.log(`${book.title}: ${book.genre.join(", ")}`);
+        });
+
+        // Display nicely on the page
+        let output = `Title of the first book: ${data[0].title}\n\n`;
+        output += `Author of the second book: ${data[1].author}\n\n`;
+        output += "Genres of all books:\n";
+        data.forEach(book => {
+          output += `• ${book.title}: ${book.genre.join(", ")}\n`;
+        });
+        document.getElementById("output").textContent = output;
+      })
+      .catch(err => console.error("Error:", err));
+  </script>
+</body>
+</html>
